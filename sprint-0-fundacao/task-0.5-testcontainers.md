@@ -12,7 +12,7 @@ Criar classe base abstrata que sobe Postgres em container via Testcontainers 2.0
 
 - [ ] `src/test/java/br/com/mauricio/contas/AbstractIntegrationTest.java` criado.
 - [ ] Anotada com `@SpringBootTest(webEnvironment = RANDOM_PORT)`, `@ActiveProfiles("test")`, `@Testcontainers`.
-- [ ] Campo `static PostgreSQLContainer<?>` com `@Container` + `@ServiceConnection`.
+- [ ] Campo `static final PostgreSQLContainer` com `@Container` + `@ServiceConnection`.
 - [ ] Setup RestAssured no `@BeforeEach` (port + baseURI).
 - [ ] `src/test/resources/application-test.yml` minimal (ddl-auto validate, flyway enabled).
 - [ ] Dependências `spring-boot-testcontainers`, `testcontainers-postgresql` e `testcontainers-junit-jupiter` presentes, sem BOM manual do Testcontainers.
@@ -20,6 +20,8 @@ Criar classe base abstrata que sobe Postgres em container via Testcontainers 2.0
 ## Especificação
 
 ```java
+import org.testcontainers.postgresql.PostgreSQLContainer;
+
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @ActiveProfiles("test")
 @Testcontainers
@@ -27,7 +29,7 @@ public abstract class AbstractIntegrationTest {
 
     @Container
     @ServiceConnection
-    static final PostgreSQLContainer<?> POSTGRES = new PostgreSQLContainer<>("postgres:16-alpine");
+    static final PostgreSQLContainer POSTGRES = new PostgreSQLContainer("postgres:16-alpine");
 
     @LocalServerPort
     int port;
@@ -61,16 +63,16 @@ Spring Boot 4.0.8 detecta o container Postgres anotado com `@ServiceConnection` 
 
 - `@Container` + `static` faz o container ser reutilizado entre testes da classe.
 - A versão 2.0.5 do Testcontainers vem do dependency management do Spring Boot 4.0.8; não declarar versão nem importar `testcontainers-bom`.
-- Em Testcontainers 2.x, usar os artefatos `testcontainers-postgresql` e `testcontainers-junit-jupiter`.
+- Em Testcontainers 2.x, usar os artefatos `testcontainers-postgresql` e `testcontainers-junit-jupiter` e importar `org.testcontainers.postgresql.PostgreSQLContainer`.
 - Para containers compartilhados entre múltiplas classes de teste, ver "Singleton Container Pattern" (avançado, não necessário Sprint 0).
-- `PostgreSQLContainer` aceita generic — usar `<?>` ou `<PostgreSQLContainer<?>>`. O `<?>` é mais idiomático.
+- A classe atual `org.testcontainers.postgresql.PostgreSQLContainer` não é genérica; não usar `<?>` nem o pacote de compatibilidade depreciado `org.testcontainers.containers`.
 
 ## Commit sugerido
 
 ```
 test(infra): AbstractIntegrationTest com testcontainers postgres
 
-Usa @ServiceConnection (SB 3.1+) para wire automatico de datasource.
+Usa @ServiceConnection (SB 4.0.8) para wire automatico de datasource.
 RestAssured configurado no @BeforeEach.
 ```
 

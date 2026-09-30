@@ -2,7 +2,7 @@
 
 > **Para agentes de IA.** Leia este arquivo no início de cada sessão para saber o estado atual do projeto sem precisar varrer git/filesystem. Mantenha atualizado ao final de cada task.
 
-**Última atualização**: 2026-09-30 17:14 BRT
+**Última atualização**: 2026-09-30 19:42 BRT
 **Atualizado por**: Codex (PO/Tech Lead)
 
 ---
@@ -12,10 +12,10 @@
 | Item | Valor |
 |---|---|
 | Sprint atual | **Sprint 0 — Fundação** |
-| Progresso Sprint 0 | 0 / 8 tasks concluídas |
-| Próxima task | **Task 0.1 — Bootstrap projeto Maven** |
+| Progresso Sprint 0 | 1 / 8 tasks concluídas |
+| Próxima task | **Task 0.2 — Docker Compose Postgres + configs YAML** |
 | Projeto criado em disco? | ✅ Sim. `C:\workspace-estudos\projeto-contas\contas-api\` existe. |
-| Build status | ✅ `mvn verify` verde com Maven 3.9.16: 1 teste unitário + 1 teste de integração, sem falhas. Wrapper Windows ainda pendente. |
+| Build status | ✅ `mvnw.cmd clean verify` verde com Maven Wrapper Plugin 3.3.2 / Maven 3.9.16: 1 teste unitário + 1 teste de integração, sem falhas. |
 | Cobertura | ✅ JaCoCo: 100% de linhas, instruções e métodos em `ContasApiApplication`. |
 
 ---
@@ -83,6 +83,8 @@ Mauricio implementa lendo os arquivos `task-X.Y-*.md`. Cola código no chat. Cla
 | 2026-07-13 | Upgrade Spring Boot 3.3.9 → 4.0.8 | Pedido do aluno; puxa Spring Framework 7 + Jakarta EE 11 + Jackson 3; springdoc bumped 2.5.0 → 3.0.3 |
 | 2026-09-30 | Testcontainers gerenciado pelo Spring Boot 4.0.8 | Resolve em 2.0.5; remove BOM manual 1.20.1 e usa os artefatos `testcontainers-postgresql` e `testcontainers-junit-jupiter` |
 | 2026-09-30 | Starters alinhados à modularização do Spring Boot 4 | Web usa `spring-boot-starter-webmvc`; testes usam starters `*-test` específicos |
+| 2026-09-30 | Devtools gerenciado pelo parent Spring Boot 4.0.8 | Evita versão divergente; dependência fica `runtime` e `optional` |
+| 2026-09-30 | Maven Wrapper Plugin 3.3.2 com Maven 3.9.16 | Evita regressão do script Windows presente no wrapper 3.3.4 |
 
 ---
 
@@ -90,7 +92,7 @@ Mauricio implementa lendo os arquivos `task-X.Y-*.md`. Cola código no chat. Cla
 
 | Sprint | Status | Tasks concluídas |
 |---|---|---|
-| Sprint 0 — Fundação | ⚪ pendente | 0/8 |
+| Sprint 0 — Fundação | 🟡 em andamento | 1/8 |
 | Sprint 1 — Usuários | 🔒 bloqueada | 0/14 |
 | Sprint 2 — Auth JWT | 🔒 bloqueada | 0/9 |
 | Sprint 3 — Conta | 🔒 bloqueada | 0/11 |
@@ -115,9 +117,7 @@ Ver `BACKLOG.md` p/ lista detalhada.
 | R2 | ModelMapper 3.x tem suporte experimental a records | 🟡 média | Validar Sprint 1; fallback é mapper manual |
 | R3 | `TransferirUseCase` cross-aggregate vai usar `@Transactional` simples | 🟡 média | Aceitar; refatorar saga/outbox em Sprint 5 se houver tempo |
 | R4 | Testcontainers requer Docker Desktop ligado | 🟢 baixa | Dev inicia o Docker Desktop antes de rodar `./mvnw verify` |
-| R5 | Spring Boot 4 troca default p/ Jackson 3 (`tools.jackson.*`); `jjwt-jackson` 0.12.6 usa Jackson 2 (`com.fasterxml.jackson.*`) | 🟡 média | Validar Task 0.1: se conflito, manter Jackson 2 no classpath p/ JJWT ou usar `jjwt-gson` |
-| R6 | `spring-boot-devtools:4.2.0-M2` diverge do parent 4.0.8 e está em `compile` | 🟠 alta | Remover versão explícita e usar `runtime` + `optional`; validar antes de aprovar Task 0.1 |
-| R8 | Maven Wrapper 3.3.4 falha no Windows ao acessar `Target[0]` nulo | 🟠 alta | Corrigir/regenerar wrapper e provar `mvnw.cmd verify` antes de aprovar Task 0.1 |
+| R5 | Spring Boot 4 usa Jackson 3 (`tools.jackson.*`) e `jjwt-jackson` 0.12.6 usa Jackson 2 (`com.fasterxml.jackson.*`) | 🟡 média | Jackson 2.21.5 confirmado no classpath; validar serialização JWT na Sprint 2 |
 
 ---
 

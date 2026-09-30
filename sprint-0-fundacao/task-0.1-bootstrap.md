@@ -10,12 +10,12 @@ Criar projeto Maven `contas-api` com Spring Boot 4.0.8 + Java 21 + todas as depe
 
 ## Critério de aceite
 
-- [ ] Diretório `C:\workspace-estudos\projeto-contas\contas-api\` existe.
-- [ ] `pom.xml` válido com Java 21, SB 4.0.8, deps abaixo.
-- [ ] Classe principal `ContasApiApplication` em `br.com.mauricio.contas`.
-- [ ] `mvnw` wrapper gerado (`mvn -N org.apache.maven.plugins:maven-wrapper-plugin:3.3.2:wrapper -Dmaven=3.9.16 -Dtype=only-script`).
-- [ ] `.gitignore` razoável.
-- [ ] `./mvnw -DskipTests package` verde.
+- [x] Diretório `C:\workspace-estudos\projeto-contas\contas-api\` existe.
+- [x] `pom.xml` válido com Java 21, SB 4.0.8, deps abaixo.
+- [x] Classe principal `ContasApiApplication` em `br.com.mauricio.contas`.
+- [x] `mvnw` wrapper gerado (`mvn -N org.apache.maven.plugins:maven-wrapper-plugin:3.3.2:wrapper -Dmaven=3.9.16 -Dtype=only-script`).
+- [x] `.gitignore` razoável.
+- [x] `./mvnw -DskipTests package` verde.
 
 ## Dependências (pom.xml)
 
