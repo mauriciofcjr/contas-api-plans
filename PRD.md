@@ -142,6 +142,7 @@ Cursos tradicionais ensinam Spring Boot em estilo CRUD + 3 camadas (controller �
 | ADR-008 | Transferência cross-aggregate via `@Transactional` simples | Saga/Outbox seria over-engineering didático |
 | ADR-009 | JJWT 0.12.x (não 0.11.x) | API moderna `Jwts.builder().signWith(key, alg)` |
 | ADR-010 | Spring Boot 4.0.8 (não 3.3.x) | Spring Framework 7 + Jakarta EE 11 + Jackson 3; exige springdoc-openapi 3.0.x; Java 21 mantido (baseline SB4 = Java 17) |
+| ADR-011 | Testcontainers 2.0.5 gerenciado pelo Spring Boot | Evita BOM manual incompatível; usa os módulos 2.x `testcontainers-postgresql` e `testcontainers-junit-jupiter` e mantém compatibilidade com Docker Engine 29 |
 
 ## 9. Métricas de Sucesso
 

@@ -6,7 +6,7 @@ EPIC 0 · Sprint 0
 
 ## Objetivo
 
-Criar classe base abstrata que sobe Postgres em container via Testcontainers + `@ServiceConnection` do Spring Boot 3.1+. Toda IT vai estender essa classe.
+Criar classe base abstrata que sobe Postgres em container via Testcontainers 2.0.5 + `@ServiceConnection` do Spring Boot 4.0.8. Toda IT vai estender essa classe.
 
 ## Critério de aceite
 
@@ -15,6 +15,7 @@ Criar classe base abstrata que sobe Postgres em container via Testcontainers + `
 - [ ] Campo `static PostgreSQLContainer<?>` com `@Container` + `@ServiceConnection`.
 - [ ] Setup RestAssured no `@BeforeEach` (port + baseURI).
 - [ ] `src/test/resources/application-test.yml` minimal (ddl-auto validate, flyway enabled).
+- [ ] Dependências `spring-boot-testcontainers`, `testcontainers-postgresql` e `testcontainers-junit-jupiter` presentes, sem BOM manual do Testcontainers.
 
 ## Especificação
 
@@ -48,7 +49,7 @@ public abstract class AbstractIntegrationTest {
 
 ## Por que `@ServiceConnection`?
 
-Spring Boot 3.1+ detecta o container Postgres anotado com `@ServiceConnection` e configura datasource automaticamente — sem precisar de `@DynamicPropertySource`. Mais limpo.
+Spring Boot 4.0.8 detecta o container Postgres anotado com `@ServiceConnection` e configura datasource automaticamente — sem precisar de `@DynamicPropertySource`. Mais limpo.
 
 ## Passos
 
@@ -59,6 +60,8 @@ Spring Boot 3.1+ detecta o container Postgres anotado com `@ServiceConnection` e
 ## Dica
 
 - `@Container` + `static` faz o container ser reutilizado entre testes da classe.
+- A versão 2.0.5 do Testcontainers vem do dependency management do Spring Boot 4.0.8; não declarar versão nem importar `testcontainers-bom`.
+- Em Testcontainers 2.x, usar os artefatos `testcontainers-postgresql` e `testcontainers-junit-jupiter`.
 - Para containers compartilhados entre múltiplas classes de teste, ver "Singleton Container Pattern" (avançado, não necessário Sprint 0).
 - `PostgreSQLContainer` aceita generic — usar `<?>` ou `<PostgreSQLContainer<?>>`. O `<?>` é mais idiomático.
 
@@ -76,5 +79,6 @@ RestAssured configurado no @BeforeEach.
 - Classe `abstract`?
 - Container `static final` (reutilizado)?
 - `@ServiceConnection` (não `@DynamicPropertySource` legado)?
+- Testcontainers 2.0.5 gerenciado pelo parent, sem BOM manual nem módulos 1.x?
 - RestAssured setup no `@BeforeEach`?
 - `application-test.yml` separado de `application-dev.yml`?

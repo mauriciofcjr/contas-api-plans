@@ -2,8 +2,8 @@
 
 > **Para agentes de IA.** Leia este arquivo no início de cada sessão para saber o estado atual do projeto sem precisar varrer git/filesystem. Mantenha atualizado ao final de cada task.
 
-**Última atualização**: 2026-06-15 09:30 BRT
-**Atualizado por**: Claude (PO/Tech Lead)
+**Última atualização**: 2026-09-30 17:14 BRT
+**Atualizado por**: Codex (PO/Tech Lead)
 
 ---
 
@@ -14,9 +14,9 @@
 | Sprint atual | **Sprint 0 — Fundação** |
 | Progresso Sprint 0 | 0 / 8 tasks concluídas |
 | Próxima task | **Task 0.1 — Bootstrap projeto Maven** |
-| Projeto criado em disco? | ❌ Não. `contas-api/` ainda não existe. Task 0.1 cria. |
-| Build status | N/A (sem código ainda) |
-| Cobertura | N/A |
+| Projeto criado em disco? | ✅ Sim. `C:\workspace-estudos\projeto-contas\contas-api\` existe. |
+| Build status | ✅ `mvn verify` verde com Maven 3.9.16: 1 teste unitário + 1 teste de integração, sem falhas. Wrapper Windows ainda pendente. |
+| Cobertura | ✅ JaCoCo: 100% de linhas, instruções e métodos em `ContasApiApplication`. |
 
 ---
 
@@ -38,8 +38,8 @@ Mauricio implementa lendo os arquivos `task-X.Y-*.md`. Cola código no chat. Cla
 
 | Path | Conteúdo |
 |---|---|
-| `/Users/mauriciochaves/Documents/workspaces/workspace-estudos/projeto-contas/contas-api/` | Projeto Java (ainda não criado) |
-| `/Users/mauriciochaves/Documents/workspaces/workspace-estudos/projeto-contas/contas-api-plans/` | Backlog + task files + docs |
+| `C:\workspace-estudos\projeto-contas\contas-api\` | Projeto Java |
+| `C:\workspace-estudos\projeto-contas\contas-api-plans\` | Backlog + task files + docs |
 | `/Users/mauriciochaves/Documents/workspaces/workspace-estudos/park-api/` | Projeto de referência (consultar padrões) |
 | `/Users/mauriciochaves/.claude/plans/preciso-que-vc-seja-async-deer.md` | Plano consolidado original |
 
@@ -47,11 +47,12 @@ Mauricio implementa lendo os arquivos `task-X.Y-*.md`. Cola código no chat. Cla
 
 ## Stack Definido
 
-- **Java 21** (Adoptium Temurin instalado em `/Users/mauriciochaves/jdks/jdk-21.0.11+10/...`)
-- **Maven 3.9.15** (em `/Users/mauriciochaves/maven/bin/mvn`)
+- **Java 21.0.12.1** (Eclipse Adoptium, em `C:\Program Files\Eclipse Adoptium\jdk-21.0.12.101-hotspot`)
+- **Maven 3.9.16** (em `C:\maven\apache-maven-3.9.16`)
 - **Spring Boot 4.0.8**
 - **PostgreSQL 16** via Docker Compose
-- **Testcontainers 1.20.1** + `@ServiceConnection`
+- **Testcontainers 2.0.5**, gerenciado pelo parent do Spring Boot, + `@ServiceConnection`
+- **Testes Spring Boot 4 modulares** (`*-test`) + `spring-boot-starter-test`
 - **JJWT 0.12.6**
 - **ModelMapper 3.2.1**
 - **springdoc-openapi 3.0.3** (linha 3.x exigida por Spring Boot 4 / Spring Framework 7)
@@ -62,7 +63,7 @@ Mauricio implementa lendo os arquivos `task-X.Y-*.md`. Cola código no chat. Cla
 
 | Recurso | Status confirmado em sessão anterior |
 |---|---|
-| Docker Desktop | Instalado, daemon precisa ser iniciado manualmente (`open -a Docker`) |
+| Docker Desktop | Instalado e validado no Windows com Docker Engine 29.8.1 / API 1.56 |
 | Maven | OK |
 | Java 21 | OK |
 
@@ -80,6 +81,8 @@ Mauricio implementa lendo os arquivos `task-X.Y-*.md`. Cola código no chat. Cla
 | 2026-06-15 | Tasks em `contas-api-plans/sprint-*/task-*.md` | Estrutura por sprint |
 | 2026-06-15 | Projeto inicial criado por engano pelo Claude → apagado | Aluno só quer escrever código ele mesmo |
 | 2026-07-13 | Upgrade Spring Boot 3.3.9 → 4.0.8 | Pedido do aluno; puxa Spring Framework 7 + Jakarta EE 11 + Jackson 3; springdoc bumped 2.5.0 → 3.0.3 |
+| 2026-09-30 | Testcontainers gerenciado pelo Spring Boot 4.0.8 | Resolve em 2.0.5; remove BOM manual 1.20.1 e usa os artefatos `testcontainers-postgresql` e `testcontainers-junit-jupiter` |
+| 2026-09-30 | Starters alinhados à modularização do Spring Boot 4 | Web usa `spring-boot-starter-webmvc`; testes usam starters `*-test` específicos |
 
 ---
 
@@ -111,8 +114,10 @@ Ver `BACKLOG.md` p/ lista detalhada.
 | R1 | `SpringSecurityConfig` na Sprint 0 será stub `permitAll` | 🟡 baixa | Sprint 2 (substitui por JWT real) |
 | R2 | ModelMapper 3.x tem suporte experimental a records | 🟡 média | Validar Sprint 1; fallback é mapper manual |
 | R3 | `TransferirUseCase` cross-aggregate vai usar `@Transactional` simples | 🟡 média | Aceitar; refatorar saga/outbox em Sprint 5 se houver tempo |
-| R4 | Testcontainers requer Docker Desktop ligado | 🟢 baixa | Dev abre Docker antes de rodar `./mvnw verify` |
+| R4 | Testcontainers requer Docker Desktop ligado | 🟢 baixa | Dev inicia o Docker Desktop antes de rodar `./mvnw verify` |
 | R5 | Spring Boot 4 troca default p/ Jackson 3 (`tools.jackson.*`); `jjwt-jackson` 0.12.6 usa Jackson 2 (`com.fasterxml.jackson.*`) | 🟡 média | Validar Task 0.1: se conflito, manter Jackson 2 no classpath p/ JJWT ou usar `jjwt-gson` |
+| R6 | `spring-boot-devtools:4.2.0-M2` diverge do parent 4.0.8 e está em `compile` | 🟠 alta | Remover versão explícita e usar `runtime` + `optional`; validar antes de aprovar Task 0.1 |
+| R8 | Maven Wrapper 3.3.4 falha no Windows ao acessar `Target[0]` nulo | 🟠 alta | Corrigir/regenerar wrapper e provar `mvnw.cmd verify` antes de aprovar Task 0.1 |
 
 ---
 
