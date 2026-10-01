@@ -22,6 +22,8 @@ Provisionar Postgres 16 local via Docker Compose + configurar `application.yml` 
 
 **Aprovada em 2026-10-01.** Configuração e arquivos atendem aos critérios da task. O compose foi renderizado corretamente com a porta `5432`; a validação de subida na configuração final não pôde ser repetida porque a porta 5432 já estava ocupada no ambiente. A aplicação também segue com falha preexistente de inicialização do Mockito/Byte Buddy no teste `ContasApiApplicationTest`, fora do escopo desta task.
 
+Complemento solicitado após o fechamento: adicionados `package-info.java` aos pacotes Java sem classes em `src/main/java`; a árvore agora contém 42 arquivos `package-info.java` e nenhum diretório de pacote vazio.
+
 ## Especificação
 
 ### docker-compose.yml

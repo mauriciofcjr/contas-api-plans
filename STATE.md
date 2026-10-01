@@ -12,8 +12,8 @@
 | Item | Valor |
 |---|---|
 | Sprint atual | **Sprint 0 — Fundação** |
-| Progresso Sprint 0 | 2 / 8 tasks concluídas |
-| Próxima task | **Task 0.3 — Estrutura pacotes hexagonal** |
+| Progresso Sprint 0 | 3 / 8 tasks concluídas |
+| Próxima task | **Task 0.4 — Configs Locale + Timezone + JpaAuditing** |
 | Projeto criado em disco? | ✅ Sim. `C:\workspace-estudos\projeto-contas\contas-api\` existe. |
 | Build status | ✅ `mvnw.cmd clean verify` verde com Maven Wrapper Plugin 3.3.2 / Maven 3.9.16: 1 teste unitário + 1 teste de integração, sem falhas. |
 | Cobertura | ✅ JaCoCo: 100% de linhas, instruções e métodos em `ContasApiApplication`. |
@@ -86,6 +86,7 @@ Mauricio implementa lendo os arquivos `task-X.Y-*.md`. Cola código no chat. Cla
 | 2026-09-30 | Devtools gerenciado pelo parent Spring Boot 4.0.8 | Evita versão divergente; dependência fica `runtime` e `optional` |
 | 2026-09-30 | Maven Wrapper Plugin 3.3.2 com Maven 3.9.16 | Evita regressão do script Windows presente no wrapper 3.3.4 |
 | 2026-10-01 | Task 0.2 aprovada e concluída | Compose e configs revisados; validação de subida final na porta 5432 impedida por porta já ocupada no ambiente |
+| 2026-10-01 | Task 0.3 aprovada e concluída | Estrutura de pacotes revisada; `./mvnw -q compile` passou |
 
 ---
 
@@ -93,7 +94,7 @@ Mauricio implementa lendo os arquivos `task-X.Y-*.md`. Cola código no chat. Cla
 
 | Sprint | Status | Tasks concluídas |
 |---|---|---|
-| Sprint 0 — Fundação | 🟡 em andamento | 2/8 |
+| Sprint 0 — Fundação | 🟡 em andamento | 3/8 |
 | Sprint 1 — Usuários | 🔒 bloqueada | 0/14 |
 | Sprint 2 — Auth JWT | 🔒 bloqueada | 0/9 |
 | Sprint 3 — Conta | 🔒 bloqueada | 0/11 |

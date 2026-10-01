@@ -14,7 +14,7 @@ Domínio: **Banking-lite** (Conta, Transação, Transferência) + Usuários + Au
 |---|---|---|
 | 0.1 | [Bootstrap projeto Maven](sprint-0-fundacao/task-0.1-bootstrap.md) | 🟢 |
 | 0.2 | [Docker Compose Postgres + configs YAML](sprint-0-fundacao/task-0.2-docker-compose.md) | 🟢 |
-| 0.3 | [Estrutura pacotes hexagonal](sprint-0-fundacao/task-0.3-packages.md) | ⚪ |
+| 0.3 | [Estrutura pacotes hexagonal](sprint-0-fundacao/task-0.3-packages.md) | 🟢 |
 | 0.4 | [Configs Locale + Timezone + JpaAuditing](sprint-0-fundacao/task-0.4-cross-configs.md) | ⚪ |
 | 0.5 | [AbstractIntegrationTest com Testcontainers](sprint-0-fundacao/task-0.5-testcontainers.md) | ⚪ |
 | 0.6 | [SpringDoc OpenAPI](sprint-0-fundacao/task-0.6-springdoc.md) | ⚪ |

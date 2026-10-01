@@ -10,9 +10,9 @@ Materializar a árvore de pacotes da arquitetura hexagonal antes de começar a e
 
 ## Critério de aceite
 
-- [ ] Diretórios criados com `package-info.java` em cada pacote relevante (ou `.gitkeep` se preferir manter clean).
-- [ ] Estrutura segue exatamente o desenho abaixo.
-- [ ] `./mvnw compile` continua verde (sem código novo, só pacotes).
+- [x] Diretórios criados com `package-info.java` em cada pacote relevante (ou `.gitkeep` se preferir manter clean).
+- [x] Estrutura segue exatamente o desenho abaixo.
+- [x] `./mvnw compile` continua verde (sem código novo, só pacotes).
 
 ## Estrutura
 
@@ -89,3 +89,7 @@ infrastructure (adapters), config (cross-cutting).
 - Estrutura idêntica ao desenho?
 - `domain/` realmente sem nenhum import externo?
 - `package-info.java` documentando regra (ou ausência consistente)?
+
+## Resultado do Review
+
+**Aprovada em 2026-10-01.** O pacote `domain/shared/command` foi corrigido; estrutura e declarações dos pacotes conferem com os caminhos. `./mvnw -q compile` passou.
