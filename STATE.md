@@ -2,7 +2,7 @@
 
 > **Para agentes de IA.** Leia este arquivo no início de cada sessão para saber o estado atual do projeto sem precisar varrer git/filesystem. Mantenha atualizado ao final de cada task.
 
-**Última atualização**: 2026-09-30 19:42 BRT
+**Última atualização**: 2026-10-01
 **Atualizado por**: Codex (PO/Tech Lead)
 
 ---
@@ -12,8 +12,8 @@
 | Item | Valor |
 |---|---|
 | Sprint atual | **Sprint 0 — Fundação** |
-| Progresso Sprint 0 | 1 / 8 tasks concluídas |
-| Próxima task | **Task 0.2 — Docker Compose Postgres + configs YAML** |
+| Progresso Sprint 0 | 2 / 8 tasks concluídas |
+| Próxima task | **Task 0.3 — Estrutura pacotes hexagonal** |
 | Projeto criado em disco? | ✅ Sim. `C:\workspace-estudos\projeto-contas\contas-api\` existe. |
 | Build status | ✅ `mvnw.cmd clean verify` verde com Maven Wrapper Plugin 3.3.2 / Maven 3.9.16: 1 teste unitário + 1 teste de integração, sem falhas. |
 | Cobertura | ✅ JaCoCo: 100% de linhas, instruções e métodos em `ContasApiApplication`. |
@@ -85,6 +85,7 @@ Mauricio implementa lendo os arquivos `task-X.Y-*.md`. Cola código no chat. Cla
 | 2026-09-30 | Starters alinhados à modularização do Spring Boot 4 | Web usa `spring-boot-starter-webmvc`; testes usam starters `*-test` específicos |
 | 2026-09-30 | Devtools gerenciado pelo parent Spring Boot 4.0.8 | Evita versão divergente; dependência fica `runtime` e `optional` |
 | 2026-09-30 | Maven Wrapper Plugin 3.3.2 com Maven 3.9.16 | Evita regressão do script Windows presente no wrapper 3.3.4 |
+| 2026-10-01 | Task 0.2 aprovada e concluída | Compose e configs revisados; validação de subida final na porta 5432 impedida por porta já ocupada no ambiente |
 
 ---
 
@@ -92,7 +93,7 @@ Mauricio implementa lendo os arquivos `task-X.Y-*.md`. Cola código no chat. Cla
 
 | Sprint | Status | Tasks concluídas |
 |---|---|---|
-| Sprint 0 — Fundação | 🟡 em andamento | 1/8 |
+| Sprint 0 — Fundação | 🟡 em andamento | 2/8 |
 | Sprint 1 — Usuários | 🔒 bloqueada | 0/14 |
 | Sprint 2 — Auth JWT | 🔒 bloqueada | 0/9 |
 | Sprint 3 — Conta | 🔒 bloqueada | 0/11 |

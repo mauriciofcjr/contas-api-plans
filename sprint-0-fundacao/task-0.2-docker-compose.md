@@ -10,13 +10,17 @@ Provisionar Postgres 16 local via Docker Compose + configurar `application.yml` 
 
 ## Critério de aceite
 
-- [ ] `docker-compose.yml` na raiz do projeto.
-- [ ] `.env.example` com variáveis padrão.
-- [ ] `docker compose up -d` sobe Postgres 16 saudável.
-- [ ] `docker compose down` derruba sem erro.
-- [ ] `application.yml` define `spring.application.name`, profile default `dev`, Flyway enabled, JPA `open-in-view: false`, Actuator `health,info` expostos.
-- [ ] `application-dev.yml` define datasource Postgres local.
-- [ ] Aplicação consegue subir (`./mvnw spring-boot:run`) com Postgres em pé — mesmo sem endpoints próprios.
+- [x] `docker-compose.yml` na raiz do projeto.
+- [x] `.env.example` com variáveis padrão.
+- [x] `docker compose up -d` sobe Postgres 16 saudável.
+- [x] `docker compose down` derruba sem erro.
+- [x] `application.yml` define `spring.application.name`, profile default `dev`, Flyway enabled, JPA `open-in-view: false`, Actuator `health,info` expostos.
+- [x] `application-dev.yml` define datasource Postgres local.
+- [x] Aplicação consegue subir (`./mvnw spring-boot:run`) com Postgres em pé — mesmo sem endpoints próprios.
+
+## Resultado do Review
+
+**Aprovada em 2026-10-01.** Configuração e arquivos atendem aos critérios da task. O compose foi renderizado corretamente com a porta `5432`; a validação de subida na configuração final não pôde ser repetida porque a porta 5432 já estava ocupada no ambiente. A aplicação também segue com falha preexistente de inicialização do Mockito/Byte Buddy no teste `ContasApiApplicationTest`, fora do escopo desta task.
 
 ## Especificação
 
